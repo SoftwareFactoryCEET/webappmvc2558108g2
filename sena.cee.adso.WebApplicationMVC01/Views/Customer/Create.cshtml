@@ -2,7 +2,21 @@
 
 @{
     ViewData["Title"] = "Create";
+
+    @if (ViewBag.ResultFail != null)
+    {
+        <script>
+            alert("Usuario Duplicado, no se puede guardar en la base de datos");          
+        </script>
+
+
+        //<div class="alert alert-info" role="alert">
+        //    @Html.Raw(ViewBag.ResultFail)
+        //</div>
+       
+    }
 }
+
 
 <div class="container box-shadow p-5">
     <h1>Agregar Cliente</h1>

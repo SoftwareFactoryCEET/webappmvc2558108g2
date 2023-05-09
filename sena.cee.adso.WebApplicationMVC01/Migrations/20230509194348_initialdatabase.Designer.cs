@@ -11,8 +11,8 @@ using sena.cee.adso.WebApplicationMVC01.Data;
 namespace sena.cee.adso.WebApplicationMVC01.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230508212222_customer3")]
-    partial class customer3
+    [Migration("20230509194348_initialdatabase")]
+    partial class initialdatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,10 +57,6 @@ namespace sena.cee.adso.WebApplicationMVC01.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");

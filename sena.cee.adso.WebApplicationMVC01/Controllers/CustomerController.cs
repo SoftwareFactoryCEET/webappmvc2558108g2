@@ -42,28 +42,35 @@ public class CustomerController : Controller
     [ValidateAntiForgeryToken]
     public ActionResult Create(Customer customer)
     {
-        try
-        {
-            if (!ModelState.IsValid)
+         if (!ModelState.IsValid)
             {
                 return View(customer);
             }
-            _context.Customers.Add(customer);
-            _context.SaveChanges();
-            TempData["ResultOk"] = "¡Recorded added successfully!";
-            return RedirectToAction("Index");
-        }
-        catch (Exception e)
+
+         //Validar si el objeto cliente(customer) ya existe en la DB
+         var resultValidacionDb = Validar2(customer.FirstName, customer.LastName);
+
+        //+
+        if (resultValidacionDb)
         {
-            return View();
+            ViewBag.ResultFail = "Usuario Duplicado, no se puede guardar en la base de datos";
+            return View(customer);
         }
+
+         //-
+
+        _context.Customers.Add(customer);
+        _context.SaveChanges();
+        ViewBag.ResultOk = "¡Recorded added successfully!";
+        return RedirectToAction("Index");
+        
     }
     
     //GET: CustomerController/Edit/5
     [HttpGet]
     public ActionResult Edit(int customerId)
     {
-        if (customerId == null || customerId==0)
+        if (customerId == default(int) || customerId < 0)
         {
             return NotFound();
         }
@@ -103,7 +110,7 @@ public class CustomerController : Controller
     [HttpGet]
     public ActionResult Delete(int customerId)
     {
-        if (customerId == null || customerId <=0)
+        if (customerId == default(int) || customerId <0)
         {
             return NotFound();
         }
@@ -139,7 +146,27 @@ public class CustomerController : Controller
             return View();
         }
     }
-    
 
+    //Métodos Auxiliares para hacer validaciones
+
+    private bool Validar (string firstName, string lastName)
+    {
+        bool flag = false;
+        var resultdb = _context.Customers
+            .Where(c => c.FirstName == firstName && c.LastName == lastName)
+            .FirstOrDefault();
+
+        if (resultdb != null)
+        {
+            flag = true;
+        }
+        return flag;
+    }
+
+    private bool Validar2(string firstName, string lastName)
+    {
+        var resultdb = _context.Customers.Any(c => c.FirstName == firstName && c.LastName == lastName);
+        return resultdb;
+    }
 
 }
