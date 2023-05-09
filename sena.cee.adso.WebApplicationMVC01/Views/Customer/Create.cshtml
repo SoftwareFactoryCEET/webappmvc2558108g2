@@ -1,0 +1,89 @@
+﻿@model sena.cee.adso.WebApplicationMVC01.Models.Customer
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container box-shadow p-5">
+    <h1>Agregar Cliente</h1>
+
+    <form method="post" asp-controller="Customer" asp-action="Create">
+
+        <div asp-validation-summary = "ModelOnly" class="text-danger"></div>
+
+        <div class="form-row">
+             <div class="form-group col-md-6">
+                 <label asp-for="FirstName" class="form-label"></label>
+                 <input type="text" class="form-control mb-3" asp-for="FirstName" placeholder="Ingrese los nombres del cliente" />
+                 <span asp-validation-for="FirstName" class="alert-danger"></span>
+            </div>
+
+             <div class="form-group col-md-6">
+                 <label asp-for="LastName" class="form-label"></label>
+                 <input type="text" class="form-control mb-3" asp-for="LastName" placeholder="Ingrese los apellidos del cliente" />
+                 <span asp-validation-for="LastName" class="alert-danger"></span>
+            </div>
+
+            <div class="form-group col-md-6">
+                 <label asp-for="City">Ciudad:</label>
+                 <input type="text" class="form-control mb-3" asp-for="City" placeholder="Ingrese el nombre de la ciudad" />
+                 <span asp-validation-for="City" class="alert-danger"></span>
+            </div>
+
+            <div class="form-group col-md-6">
+                 <label asp-for="Country">País:</label>
+                 <input type="text" class="form-control mb-3" asp-for="Country" placeholder="Ingrese el nombre del país" />
+                 <span asp-validation-for="Country" class="alert-danger"></span>
+            </div>
+
+            <div class="form-group col-md-6">
+                 <label asp-for="Phone">Teléfono:</label>
+                 <input type="text" class="form-control mb-3" asp-for="Phone" placeholder="Ingrese el número de teléfono" />
+                 <span asp-validation-for="Phone" class="alert-danger"></span>
+            </div>
+
+            @*Pruebas*@
+
+            <div class="form-group col-md-6">
+                 <label asp-for="Email"></label>
+                 <input type="text" class="form-control mb-3" asp-for="Email" placeholder="Ingrese e-mail" />
+                 <span asp-validation-for="Email" class="alert-danger"></span>
+            </div>
+
+              <div class="form-group col-md-6">
+                 <label asp-for="Age"></label>
+                 <input type="text" class="form-control mb-3" asp-for="Age" placeholder="Ingrese edad" />
+                 <span asp-validation-for="Age" class="alert-danger"></span>
+            </div>
+
+             <div class="form-group col-md-6">
+                 <label asp-for="URL"></label>
+                 <input type="text" class="form-control mb-3" asp-for="URL" placeholder="Ingrese URL" />
+                 <span asp-validation-for="URL" class="alert-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                 <label asp-for="CreditCard"></label>
+                 <input type="text" class="form-control mb-3" asp-for="CreditCard   " placeholder="Ingrese credit card" />
+                 <span asp-validation-for="CreditCard" class="alert-danger"></span>
+            </div>
+
+
+            @*Botones*@
+            <button type="submit" class="btn btn-primary btn-lg p-2">
+                <i class="bi bi-save2-fill"></i>
+                Guardar
+            </button>
+
+            <a asp-controller="Customer" asp-action="Index" class= "btn btn-lg btn-danger p-2">
+                <i class= "bi bi-box-arrow-left"></i>
+                Regresar
+            </a>
+
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name= "_ValidationScriptsPartial" />
+}
+
