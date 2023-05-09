@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace sena.cee.adso.WebApplicationMVC01.Models;
 
@@ -21,21 +22,23 @@ public class Customer
     public string Phone { get; set; }
 
 
-    //Ejemplo de otros Scafold
-    [Required(ErrorMessage ="El campo {0} es obligatorio")]
-    [EmailAddress(ErrorMessage ="Ingrese una dirección de correo electronico válida")]
-    public string Email { get; set; }
+    ////Ejemplo de otros Scafold
+    ////[Required(ErrorMessage = "El campo {0} es obligatorio")]
+    //[EmailAddress(ErrorMessage = "Ingrese una dirección de correo electronico válida")]
+
+    ////[Remote(action: "ValidarEmail", controller: "Customer")] //Pendiente revisar por qué no funciona en el cliente
+    //public string Email { get; set; }
 
     
-    [Range(minimum:18, maximum:100, ErrorMessage ="El valor debe estar en el rango {1} a {2}")]
-    public int Age { get; set; }
+    //[Range(minimum:18, maximum:100, ErrorMessage ="El valor debe estar en el rango {1} a {2}")]
+    //public int Age { get; set; }
 
     
-    [Url(ErrorMessage ="Ingrese una URL válida")]
-    public string URL { get; set; }
+    //[Url(ErrorMessage ="Ingrese una URL válida")]
+    //public string URL { get; set; }
 
-    [CreditCard(ErrorMessage ="número de tarjeta de Crédito no válido")]
-    [Display(Name ="Tarjeta de Crédito")]
-    public string CreditCard { get; set; }
+    //[CreditCard(ErrorMessage ="número de tarjeta de Crédito no válido")]
+    //[Display(Name ="Tarjeta de Crédito")]
+    //public string CreditCard { get; set; }
 
 }

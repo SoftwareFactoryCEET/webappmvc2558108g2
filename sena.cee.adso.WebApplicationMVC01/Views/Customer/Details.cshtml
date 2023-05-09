@@ -1,0 +1,32 @@
+﻿@model sena.cee.adso.WebApplicationMVC01.Models.Customer
+@{
+    ViewData["Title"] = "Details Customer";
+}
+
+<h1 class="text-center">Details Customer</h1>
+
+<div class="row">
+    <div class="offset-12">
+        <div class="card border">
+            <div class="card-header bg-dark">
+                <h3 class="text-white"><strong>Details Customer</strong></h3>
+            </div>
+
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Nombres: </strong>@Html.DisplayFor(m => m.FirstName)</li>
+                    <li class="list-group-item"><strong>Apellidos: </strong>@Html.DisplayFor(m => m.LastName)</li>
+                    <li class="list-group-item"><strong>Ciudad: </strong>@Html.DisplayFor(m => m.City)</li>
+                    <li class="list-group-item"><strong>País: </strong>@Html.DisplayFor(m => m.Country)</li>
+                    <li class="list-group-item"><strong>Teléfono: </strong>@Html.DisplayFor(m => m.Phone)</li>
+                </ul>
+                <a asp-controller="Customer" asp-action="Index" class="btn btn-lg btn-danger p-2">
+                    <i class="bi bi-box-arrow-left"></i>
+                    Regresar
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+</div>

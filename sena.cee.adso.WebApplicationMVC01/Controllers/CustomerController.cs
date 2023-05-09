@@ -24,9 +24,9 @@ public class CustomerController : Controller
     
     //GET: CustomerController/Details/5
     [HttpGet]
-    public ActionResult Details(int customerId) //CustomerId
+    public ActionResult Details(int id) //CustomerId
     {
-        var customer = _context.Customers.Find(customerId);
+        var customer = _context.Customers.Find(id);
         return View(customer);
     }
     
@@ -68,14 +68,15 @@ public class CustomerController : Controller
     
     //GET: CustomerController/Edit/5
     [HttpGet]
-    public ActionResult Edit(int customerId)
+    public ActionResult Edit(int id)
     {
-        if (customerId == default(int) || customerId < 0)
+
+        if (id == default(int) || id < 0)
         {
             return NotFound();
         }
 
-        var customerfromdb = _context.Customers.Find(customerId);
+        var customerfromdb = _context.Customers.Find(id);
         if (customerfromdb  == null)
         {
             return NotFound();
@@ -108,14 +109,14 @@ public class CustomerController : Controller
     
     //GET: CustomerController/Delete/5
     [HttpGet]
-    public ActionResult Delete(int customerId)
+    public ActionResult Delete(int id)
     {
-        if (customerId == default(int) || customerId <0)
+        if (id == default(int) || id <0)
         {
             return NotFound();
         }
 
-        var customerfromdb = _context.Customers.Find(customerId);
+        var customerfromdb = _context.Customers.Find(id);
         if (customerfromdb == null)
         {
             return NotFound();
@@ -126,11 +127,11 @@ public class CustomerController : Controller
     
     //POST: CustomerController/Delete/5
     [HttpPost]
-    public ActionResult Delete(int? customerId)
+    public ActionResult Delete(int? id)
     {
         try
         {
-            var customerfromdb = _context.Customers.Find(customerId);
+            var customerfromdb = _context.Customers.Find(id);
             if (customerfromdb == null)
             {
                 return NotFound();
@@ -168,5 +169,9 @@ public class CustomerController : Controller
         var resultdb = _context.Customers.Any(c => c.FirstName == firstName && c.LastName == lastName);
         return resultdb;
     }
-
+    //private bool ValidarEmail(string email)
+    //{
+    //    var resultdb = _context.Customers.Any(c => c.Email == email);
+    //    return resultdb;
+    //}
 }

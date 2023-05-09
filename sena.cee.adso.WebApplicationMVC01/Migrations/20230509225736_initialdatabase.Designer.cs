@@ -11,7 +11,7 @@ using sena.cee.adso.WebApplicationMVC01.Data;
 namespace sena.cee.adso.WebApplicationMVC01.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230509194348_initialdatabase")]
+    [Migration("20230509225736_initialdatabase")]
     partial class initialdatabase
     {
         /// <inheritdoc />
@@ -32,22 +32,11 @@ namespace sena.cee.adso.WebApplicationMVC01.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"));
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreditCard")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -62,10 +51,6 @@ namespace sena.cee.adso.WebApplicationMVC01.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("URL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
