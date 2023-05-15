@@ -7,7 +7,7 @@
 
 
 <div class="container box-shadow 5">
-    <h1 class="text-center mb-3">Operaciones CRUD usando .NET 6y ASP - Customers</h1>
+    <h1 class="text-center mb-3">Operaciones CRUD usando .NET 6 y ASP - Customers</h1>
 
     <div>
         <a asp-controller="Customer" asp-action="Create" class="btn btn-lg btn-primary">
@@ -30,20 +30,20 @@
         <tbody>
             @foreach(var item in Model){
                 <tr>
-                    <td width="15%">@item.CustomerId</td>
+                    <td width="10%">@item.CustomerId</td>
                     <td width="15%">@item.FirstName</td>
                     <td width="15%">@item.LastName</td>
-                    <td width="15%">@item.City</td>
+                    <td width="10%">@item.City</td>
                     <td width="10%">@item.Country</td>
                     <td width="10%">@item.Phone</td>
-                    <td  width="20%">
+                    <td  width="30%">
                          <div role="group" class="w-60 btn-btn-group">
-                             <a asp-controller="Customer" asp-action="Edit" asp-route-id="@item.CustomerId" class="btn btn-sm btn-primary">
+                            <a asp-controller="Customer" asp-action="Edit" asp-route-id="@item.CustomerId" class="btn btn-sm btn-primary">
                                  <i class="bi bi-pencil-square"></i>
                                  Editar
                              </a>&nbsp;
 
-                             <a asp-controller="Customer" asp-action="Delete" asp-route-id="@item.CustomerId" class="btn btn-sm btn-danger">
+                            <a asp-controller="Customer" asp-action="Delete" asp-route-id="@item.CustomerId" class="btn btn-sm btn-danger">
                                  <i class="bi bi-trash-fill"></i>
                                  Eliminar
                              </a>

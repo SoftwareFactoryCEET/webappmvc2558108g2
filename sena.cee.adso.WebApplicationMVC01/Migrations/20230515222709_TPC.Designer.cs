@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using sena.cee.adso.WebApplicationMVC01.Data;
 
@@ -11,9 +12,11 @@ using sena.cee.adso.WebApplicationMVC01.Data;
 namespace sena.cee.adso.WebApplicationMVC01.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230515222709_TPC")]
+    partial class TPC
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,6 +157,10 @@ namespace sena.cee.adso.WebApplicationMVC01.Migrations
                     b.Property<decimal>("Charge")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Months")
                         .HasColumnType("int");
 
@@ -164,7 +171,9 @@ namespace sena.cee.adso.WebApplicationMVC01.Migrations
 
                     b.ToTable("Contracts");
 
-                    b.UseTptMappingStrategy();
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Contract");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("sena.cee.adso.WebApplicationMVC01.Models.Customer", b =>
@@ -236,7 +245,7 @@ namespace sena.cee.adso.WebApplicationMVC01.Migrations
                     b.Property<int>("DownloadSpeed")
                         .HasColumnType("int");
 
-                    b.ToTable("BroadBandContract");
+                    b.HasDiscriminator().HasValue("BroadBandContract");
                 });
 
             modelBuilder.Entity("sena.cee.adso.WebApplicationMVC01.Models.MobileContract", b =>
@@ -246,7 +255,7 @@ namespace sena.cee.adso.WebApplicationMVC01.Migrations
                     b.Property<string>("MobileNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("MobileContract");
+                    b.HasDiscriminator().HasValue("MobileContract");
                 });
 
             modelBuilder.Entity("sena.cee.adso.WebApplicationMVC01.Models.TvContract", b =>
@@ -256,7 +265,7 @@ namespace sena.cee.adso.WebApplicationMVC01.Migrations
                     b.Property<int>("PackageType")
                         .HasColumnType("int");
 
-                    b.ToTable("TvContract");
+                    b.HasDiscriminator().HasValue("TvContract");
                 });
 
             modelBuilder.Entity("AuthorBook", b =>
@@ -311,33 +320,6 @@ namespace sena.cee.adso.WebApplicationMVC01.Migrations
                         .HasForeignKey("CustomerId");
 
                     b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("sena.cee.adso.WebApplicationMVC01.Models.BroadBandContract", b =>
-                {
-                    b.HasOne("sena.cee.adso.WebApplicationMVC01.Models.Contract", null)
-                        .WithOne()
-                        .HasForeignKey("sena.cee.adso.WebApplicationMVC01.Models.BroadBandContract", "ContractId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("sena.cee.adso.WebApplicationMVC01.Models.MobileContract", b =>
-                {
-                    b.HasOne("sena.cee.adso.WebApplicationMVC01.Models.Contract", null)
-                        .WithOne()
-                        .HasForeignKey("sena.cee.adso.WebApplicationMVC01.Models.MobileContract", "ContractId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("sena.cee.adso.WebApplicationMVC01.Models.TvContract", b =>
-                {
-                    b.HasOne("sena.cee.adso.WebApplicationMVC01.Models.Contract", null)
-                        .WithOne()
-                        .HasForeignKey("sena.cee.adso.WebApplicationMVC01.Models.TvContract", "ContractId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("sena.cee.adso.WebApplicationMVC01.Models.Author", b =>

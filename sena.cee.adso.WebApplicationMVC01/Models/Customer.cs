@@ -10,35 +10,30 @@ public class Customer
 
     [Required(ErrorMessage = "El campo {0} es obligatorio.")]
     [Display(Name ="Nombres")]
-    [StringLength(256, MinimumLength = 3, ErrorMessage = "A name must be between five and twenty characters.")]
+    [StringLength(256, MinimumLength = 3, ErrorMessage = "A {0} must be between {2} and {1} characters.")]
     public string FirstName { get; set; }
 
     [Required(ErrorMessage = "El campo {0} es obligatorio.")]
     [Display(Name ="Apellidos")]
-    [StringLength(256, MinimumLength = 3, ErrorMessage = "A name must be between five and twenty characters.")]
-   public string LastName { get; set; }
+    [StringLength(256, MinimumLength = 3, ErrorMessage = "A {0} must be between {2} and {1} characters.")]
+    public string LastName { get; set; }
+
+    [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+    [Display(Name = "Ciudad")]
+    [StringLength(256, MinimumLength = 3, ErrorMessage = "A {0} must be between {2} and {1} characters.")]
     public string City { get; set; }
+
+    [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+    [Display(Name = "País")]
+    [StringLength(256, MinimumLength = 3, ErrorMessage = "A {0} must be between {2} and {1} characters.")]
     public string Country { get; set; }
+
+    [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+    [Display(Name = "Teléfono")]
+    [StringLength(10, MinimumLength = 10, ErrorMessage = "The size of the phone field is 11 characters.")]
+    [RegularExpression(@"^\d{10}$", ErrorMessage = "The {0} format is invalid.")]
     public string Phone { get; set; }
 
-
-    ////Ejemplo de otros Scafold
-    ////[Required(ErrorMessage = "El campo {0} es obligatorio")]
-    //[EmailAddress(ErrorMessage = "Ingrese una dirección de correo electronico válida")]
-
-    ////[Remote(action: "ValidarEmail", controller: "Customer")] //Pendiente revisar por qué no funciona en el cliente
-    //public string Email { get; set; }
-
+    public ICollection<Order> Orders { get; set; }
     
-    //[Range(minimum:18, maximum:100, ErrorMessage ="El valor debe estar en el rango {1} a {2}")]
-    //public int Age { get; set; }
-
-    
-    //[Url(ErrorMessage ="Ingrese una URL válida")]
-    //public string URL { get; set; }
-
-    //[CreditCard(ErrorMessage ="número de tarjeta de Crédito no válido")]
-    //[Display(Name ="Tarjeta de Crédito")]
-    //public string CreditCard { get; set; }
-
 }
